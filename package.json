@@ -1,0 +1,27 @@
+{
+  "name": "educatus-mern-app",
+  "version": "1.0.0",
+  "description": "> A collaboration platform for educators to learn, reflect and share",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sechibueze/educatus-mern-app.git"
+  },
+  "keywords": [],
+  "author": "Samuel Chibueze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sechibueze/educatus-mern-app/issues"
+  },
+  "homepage": "https://github.com/sechibueze/educatus-mern-app#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.7"
+  }
+}
