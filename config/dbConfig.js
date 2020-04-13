@@ -5,7 +5,8 @@ function dbConnection(params) {
   mongoose.connect(uri, {
     useFindAndModify: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   }, (err) => {
     if (err ) return console.log('Failed to connect to DB', err);
     console.log('connected to DB', uri);

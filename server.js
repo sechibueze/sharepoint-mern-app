@@ -1,9 +1,11 @@
 const express = require('express');
+const { config } = require('dotenv');
 const app = express();
 const dbConfig = require('./config/dbConfig');
 dbConfig();
-const port = process.env.PORT || 5000;
-
+config(); //set up dotenv
+const port = process.env.PORT || 8080;
+app.use(express.json({ extended: true}));
 /*******
  *  *** Routes
  */
