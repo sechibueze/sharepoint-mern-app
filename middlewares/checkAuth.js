@@ -8,7 +8,7 @@ const checkAuth = (req, res, next) => {
    if (!token) {
      return res.status(401).json({
        status: false,
-       error: ['Auth Failed:: No token in header']
+       errors: ['Auth Failed:: No token in header']
      });
    }
 
@@ -17,7 +17,7 @@ const checkAuth = (req, res, next) => {
     if (err) {
       return res.status(401).json({
         status: false,
-        error: ['Auth Failed:: Invalid token']
+        errors: ['Auth Failed:: Invalid token']
       });
     }
 
