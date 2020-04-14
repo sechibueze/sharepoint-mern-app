@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const {  validationResult } = require('express-validator');
 
 const User = require('../models/User');
+
 const signup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -57,4 +58,58 @@ const signup = (req, res) => {
   });
 };
 
-module.exports = {signup};
+
+const login = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      status: false,
+      error: errors.array().map(err => err.msg)
+    });
+  }
+  // login request passed all validations
+  const { email, password } = req.body;
+ 
+  // Check if User already exists
+  User.findOne({ email }, (err, user) => {
+    if (err) return res.status(500).json({ status: false, error: ['Internal Server Error:: failed to confirm user account'] });
+
+    if (!user) return res.status(400).json({ status: false, error: ['Email or Password is not valid'] });
+
+    // User exist => compare password
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) return res.status(500).json({ status: false, error: ['Internal Server Error:: Failed to compare password'] });
+
+      if (!isMatch) {
+        return res.status(401).json({
+          status: false,
+          error: ['Email or Password is not valid']
+        });
+      }
+
+      // Password and Email matched
+      // Get the token
+      jwt.sign({
+        id: user._id
+      },
+      process.env.JWT_SECRET_KEY,
+        {
+          expiresIn: 60 * 60 * 60
+        },
+        (err, token) => {
+          if (err) return res.status(500).json({ status: false, error: ['Internal Server Error:: Failed to generate token'] });
+
+          // token was found
+          return res.status(200).json({
+            status: true,
+            message: 'User login successful',
+            token
+          });
+        });
+    });
+   
+
+  });
+};
+
+module.exports = {signup, login};
