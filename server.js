@@ -9,10 +9,10 @@ app.use(express.json({ extended: true}));
 /*******
  *  *** Routes
  */
-const usersRoute = require('./routes/api/usersRoute');
+const authRoute = require('./routes/api/authRoute');
 const profilesRoute = require('./routes/api/profilesRoute');
 const postsRoute = require('./routes/api/postsRoute');
-app.use('/api/users', usersRoute);
+app.use('/api', authRoute);
 app.use('/api/profiles', profilesRoute);
 app.use('/api/posts', postsRoute);
 
