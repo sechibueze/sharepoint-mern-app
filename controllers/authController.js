@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const gravatar = require('gravatar');
 const {  validationResult } = require('express-validator');
 
 const User = require('../models/User');
@@ -22,7 +23,9 @@ const signup = (req, res) => {
     if (user) return res.status(401).json({ status: false, error: ['Bad Request:: User account already exists'] });
 
     // User does not exist => create new user
-    let newUser = new User({ name, email, password });
+    // set up gravata
+    const avatar = gravatar.url(email, {s: '150', d: 'mm', r: 'pg'}, true);
+    let newUser = new User({ name, email, password, avatar });
     // Hash password before save
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return res.status(500).json({ status: false, error: ['Internal Server Error:: failed to generate salt'] });
