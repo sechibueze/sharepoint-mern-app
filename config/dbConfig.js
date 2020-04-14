@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 function dbConnection(params) {
   let uri = process.env.MONGODBURI || 'mongodb://localhost:27017/educatus-mern-app';
   mongoose.connect(uri, {
-    useFindAndModify: true,
+    useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
