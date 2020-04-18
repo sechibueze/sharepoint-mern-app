@@ -18,6 +18,7 @@
 - User CRUD profile `CRUD education & experience`
 - User CRUD post `like & unlike, comment & remove comment`
 - User CRUD courses `Next update`
+
 ### User signup
 > POST 201 public /api/signup
 
@@ -325,6 +326,7 @@
   "message": "Record successfully deleted"
 }
 </code></pre>
+<<<<<<< HEAD
 
 ## Posts
 
@@ -414,6 +416,8 @@
 <pre><code>
 </code></pre>
 
+=======
+>>>>>>> 7e965c9855ef2a9577ed8ee3505f01bccda2fd2f
 # Packages
 - Express
 - JWT
