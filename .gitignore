@@ -1,0 +1,5 @@
+node_modules/
+NOTE.MD
+.env
+UI/
+client/
