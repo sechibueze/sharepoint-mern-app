@@ -8,6 +8,8 @@
 > Always pick what you want from the returned data. Some keys may not be relevant to your application. You may use Object destructuring.
 
 > All private endpoint would be assessed by sending a valid JWT in the `x-auth-token` key
+
+
 > Developed By: [Samuel Chibueze](https://sechibueze.github.io)
 ## User stories
 
