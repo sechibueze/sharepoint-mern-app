@@ -1,18 +1,24 @@
 # EDUCATUS-MERN-APP
 
-> A collaboration platform for educators to learn, reflect and share
+> A collaboration platform for professionals (educators & developers) to learn, reflect, connect and share ideas & resources with others
 
 # API Docs
 [see Educatus API](https://educatus-mern-app.herokuapp.com/)
 
-> Always pick what you want from the returned data.Some keys may not be relevant to your application. You may use Object destructuring. 
+> Always pick what you want from the returned data. Some keys may not be relevant to your application. You may use Object destructuring.
+
+> All private endpoint would be assessed by sending a valid JWT in the `x-auth-token` key
+
+
+> Developed By: [Samuel Chibueze](https://sechibueze.github.io)
 ## User stories
 
 - User signup
 - User login
-- User CRUD profile
-- User CRUD post
-- User CRUD courses <next update>
+- User CRUD profile `CRUD education & experience`
+- User CRUD post `like & unlike, comment & remove comment`
+- User CRUD courses `Next update`
+
 ### User signup
 > POST 201 public /api/signup
 
@@ -320,6 +326,98 @@
   "message": "Record successfully deleted"
 }
 </code></pre>
+<<<<<<< HEAD
+
+## Posts
+
+### Create a post
+> POST 201 private /api/posts
+<pre><code>
+{
+	"content": "This is my second post"
+}
+</code></pre>
+<pre><code>
+{
+  "status": true,
+  "message": "New Post created",
+  "data": {
+    "name": "Test Tester",
+    "avatar": "https://s.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=150&d=mm&r=pg",
+    "_id": "5e984742bbe3e50cb402f5be",
+    "user": "5e95db30c90c692054640e4e",
+    "content": "This is my second post",
+    "likes": [],
+    "comments": [],
+    "date": "2020-04-16T11:53:38.731Z",
+    "__v": 0
+  }
+}
+</code></pre>
+
+### Get All Posts
+> GET 200 private /api/posts
+<pre><code>
+
+</code></pre>
+<pre><code>
+
+</code></pre>
+
+### Get Post by ID 
+> GET 200 private /api/posts/:id
+<pre><code>
+
+</code></pre>
+<pre><code>
+{
+  "status": true,
+  "message": "Found Post",
+  "data": {
+    "name": "Test Tester",
+    "avatar": "https://s.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=150&d=mm&r=pg",
+    "_id": "5e984742bbe3e50cb402f5be",
+    "user": "5e95db30c90c692054640e4e",
+    "content": "This is my second post",
+    "likes": [],
+    "comments": [],
+    "date": "2020-04-16T11:53:38.731Z",
+    "__v": 0
+  }
+}
+</code></pre>
+
+### Delete a Post
+> DELETE 200 private /api/posts/id
+<pre><code>
+
+</code></pre>
+<pre><code>
+
+</code></pre>
+
+### Like a Post
+> PUT 200 private /api/posts/like/:post_id
+<pre><code>
+</code></pre>
+
+### Unlike a Post
+> PUT 200 private /api/posts/unlike/:post_id
+<pre><code>
+</code></pre>
+
+### Comment on  a Post
+> POST 201 private /api/posts/comments/:post_id
+<pre><code>
+</code></pre>
+
+### Delete a comment on a post a Post
+> PUT 200 /api/posts:/post_id/comments/:comment_id
+<pre><code>
+</code></pre>
+
+=======
+>>>>>>> 7e965c9855ef2a9577ed8ee3505f01bccda2fd2f
 # Packages
 - Express
 - JWT
