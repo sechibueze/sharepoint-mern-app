@@ -6,7 +6,7 @@ const ProfileCard = () => {
      
       <div className="profile p-2">
         <div className="profile-image p-1">
-          <img src="./img/1_9kiIj-ZaWItE0sIMBRdlDg.jpeg" alt='image' style={{width: '90px', height: '90px', borderRadius: '50%'}} />
+          <img src="./img/1_9kiIj-ZaWItE0sIMBRdlDg.jpeg" alt='person professional' style={{width: '90px', height: '90px', borderRadius: '50%'}} />
 
         </div>
         <div className="profile-info p-1">

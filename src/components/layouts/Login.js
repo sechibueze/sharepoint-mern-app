@@ -1,12 +1,16 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-const Login = () => {
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alertActions';
+import { loginUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
+import Alert from '../Alert';
+const Login = ({ setAlert, loginUser, isAuthenticated }) => {
   const [state, setState] = useState({
     email: '',
     password: ''
   });
-  const [message, setMessage] = useState('');
-
+  
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
@@ -14,7 +18,17 @@ const Login = () => {
 
   const handleLogin = e => {
     e.preventDefault();
+    const { email, password } = state;
+    if (!email || !password) {
+      setAlert('All fields are required');
+    }else{
+      loginUser(email, password);
+    }
 
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />
   }
 
   return (
@@ -25,7 +39,8 @@ const Login = () => {
         <p className="py-1">Login to see the new excitement</p>
 
         <sup>*</sup> Required
-          {message && <p className="alert alert-danger">{message} </p>}
+        
+          <Alert />
          {/* <!-- Email --> */}
         <div className="form-group">
           <label for="email">Email<sup>*</sup></label>
@@ -52,4 +67,12 @@ const Login = () => {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, { setAlert, loginUser })(Login);

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
   return (
     <Fragment>
@@ -8,9 +8,10 @@ const Dashboard = () => {
       </div>
       
       <div className="dashboard-navigation">
-        <a href="#"> Edit Profile</a>
-        <a href="#"> Add Experience</a>
-        <a href="#"> Add Education</a>
+        <Link to='/edit'>Edit Profile</Link>
+        <Link to='/edit'>Add Education </Link>
+        <Link to='/edit'>Add Experienc</Link>
+        
       </div>
       
 
@@ -31,13 +32,13 @@ const Dashboard = () => {
               <td>University of Michigan</td>
               <td className="hide-sm">2001 - 2019</td>
               <td>B.Sc, Computer Science</td>
-              <td> <a href="#" className="btn btn-danger">DELETE</a></td>
+              <td> <a href="#!" className="btn btn-danger">DELETE</a></td>
             </tr>
             <tr>
               <td>University of Michigan</td>
               <td className="hide-sm">2001 - 2019</td>
               <td>B.Sc, Computer Science</td>
-              <td> <a href="#" className="btn btn-danger">DELETE</a></td>
+              <td> <a href="!#" className="btn btn-danger">DELETE</a></td>
             </tr>
             <tr>
               <td>University of Michigan</td>
