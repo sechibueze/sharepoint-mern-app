@@ -61,7 +61,7 @@ const signup = (req, res) => {
   });
 };
 
-
+// 
 const login = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -114,5 +114,6 @@ const login = (req, res) => {
 
   });
 };
+
 
 module.exports = {signup, login};

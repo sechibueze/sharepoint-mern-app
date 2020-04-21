@@ -54,7 +54,7 @@
 </code></pre>
 
 ### Get LoggedIn User Profile
-> POST 200 public /api/profiles/me
+> POST 200 private /api/profiles/me
 
 `Header => x-auth-token : <valid token>` 
 <pre><code>
