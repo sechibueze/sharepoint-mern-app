@@ -1,13 +1,19 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-const Register = () => {
+import { Link , Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import PropTypes from 'prop-types';
+import { registerUser } from '../../actions/authActions';
+import { setAlert } from '../../actions/alertActions';
+import Alert from '../Alert';
+const Register = ({ isAuthenticated, registerUser, setAlert}) => {
   const [state, setState ] = useState({
     name: '',
     email: '',
     password: '',
     confirm_password: ''
   });
-  const [message, setMessage ] = useState('');
+
 
   const handleChange = ({ target }) => {
     const { name , value} = target;
@@ -16,16 +22,24 @@ const Register = () => {
 
   const handleRegistration = e => {
     e.preventDefault();
-    
+    const { name, email, password,confirm_password } = state;
+    if (password !== confirm_password) {
+      setAlert('Password does not match');
+    } else{
+      registerUser({ name, email, password});
+    }
   }
-  console.log('state', state)
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
+ 
   return ( 
     <Fragment>
       <form onSubmit={handleRegistration} name="register-form" className="form my-2">
         <h1 className="text text-primary p-1"> <span className="fa fa-user"></span> Signup</h1>
         <p className="py-1">Join our community of professionals</p>
         <sup>*</sup> Required
-          {message && <p className="alert alert-danger">{message} </p>} 
+          <Alert />
         {/* <!-- Name field --> */}
       <div className="form-group">
           <label for="name">Name</label>
@@ -68,5 +82,12 @@ const Register = () => {
     </Fragment> 
     );
 }
- 
-export default Register;
+Register.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  registerUser: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
+};
+ const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+ });
+export default connect(mapStateToProps, { registerUser, setAlert })(Register);

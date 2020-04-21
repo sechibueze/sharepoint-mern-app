@@ -5,6 +5,12 @@
 # API Docs
 [see Educatus API](https://educatus-mern-app.herokuapp.com/)
 
+# Setup
+> The server runs on localhost:8080
+- `git clone <repoUrl>`
+- `cd path/to/clone`
+- `npm start`
+
 # Packages
 
 - React Router

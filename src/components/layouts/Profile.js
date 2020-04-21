@@ -6,7 +6,7 @@ const Profile = (props) => {
       <h1> Profiles for { props.match.params.id}</h1>
       <div className="member-profile">
         <div className="profile-header mb-1">
-          <img src="%PUBLIC_URL%/img/1_9kiIj-ZaWItE0sIMBRdlDg.jpeg" alt='profile image' style={{ width: '90px', height: '90px', borderRadius: '50%' }}/>
+          <img src="%PUBLIC_URL%/img/1_9kiIj-ZaWItE0sIMBRdlDg.jpeg" alt='profile of professional' style={{ width: '90px', height: '90px', borderRadius: '50%' }}/>
           <h1 className="text text-primary"> Sara Smith</h1>
           <div className="connect-icons my-2">
             <link to="https://sechibueze.github.io"><span className="fa fa-globe"></span></link>

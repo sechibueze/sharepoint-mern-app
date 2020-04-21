@@ -1,16 +1,21 @@
-import React, { Fragment } from 'react';
-
-const Dashboard = () => {
+import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
+const Dashboard = ({ user, loadUser }) => {
+  useEffect(() => loadUser(), []);
   return (
     <Fragment>
       <div className="mb-1">
-        <p className="text text-primary">Welcome, Sam</p>
+        <p className="text text-primary">Welcome, { user && user.name}</p>
       </div>
       
       <div className="dashboard-navigation">
-        <a href="#"> Edit Profile</a>
-        <a href="#"> Add Experience</a>
-        <a href="#"> Add Education</a>
+        <Link to='/edit'>Edit Profile</Link>
+        <Link to='/edit'>Add Education </Link>
+        <Link to='/edit'>Add Experienc</Link>
+        
       </div>
       
 
@@ -31,13 +36,13 @@ const Dashboard = () => {
               <td>University of Michigan</td>
               <td className="hide-sm">2001 - 2019</td>
               <td>B.Sc, Computer Science</td>
-              <td> <a href="#" className="btn btn-danger">DELETE</a></td>
+              <td> <a href="#!" className="btn btn-danger">DELETE</a></td>
             </tr>
             <tr>
               <td>University of Michigan</td>
               <td className="hide-sm">2001 - 2019</td>
               <td>B.Sc, Computer Science</td>
-              <td> <a href="#" className="btn btn-danger">DELETE</a></td>
+              <td> <a href="!#" className="btn btn-danger">DELETE</a></td>
             </tr>
             <tr>
               <td>University of Michigan</td>
@@ -82,5 +87,12 @@ const Dashboard = () => {
     </Fragment>
   );
 }
- 
-export default Dashboard;
+Dashboard.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object
+};
+ const mapStateToProps = state => ({
+   isAuthenticated: state.auth.isAuthenticated,
+   user: state.auth.user
+ });
+export default connect(mapStateToProps, { loadUser })(Dashboard);
