@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './App.css';
@@ -10,10 +10,16 @@ import Login from './components/layouts/Login';
 import Dashboard from './components/layouts/Dashboard';
 import ProfileList from './components/layouts/ProfileList';
 import Profile from './components/layouts/Profile';
+import Authenticate from './utils/Authenticate';
 import store from './store';
+import { loadUser } from './actions/authActions';
 // const Post = () => <h1>Profile</h1>
 
 const App = () => {
+  // componentDidMount
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return  (
     <Provider store={store}>
       <Router>
@@ -24,7 +30,7 @@ const App = () => {
             <div className='container'>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
-              <Route exact path='/dashboard' component={Dashboard} />
+              <Authenticate exact path='/dashboard' component={Dashboard} />
               <Route exact path='/profiles' component={ProfileList} />
               <Route exact path='/profiles/:id' component={Profile} />
             </div>

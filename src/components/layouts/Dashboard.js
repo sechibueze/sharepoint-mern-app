@@ -1,10 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const Dashboard = () => {
+import { connect } from 'react-redux';
+import { loadUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
+const Dashboard = ({ user, loadUser }) => {
+  useEffect(() => loadUser(), []);
   return (
     <Fragment>
       <div className="mb-1">
-        <p className="text text-primary">Welcome, Sam</p>
+        <p className="text text-primary">Welcome, { user && user.name}</p>
       </div>
       
       <div className="dashboard-navigation">
@@ -83,5 +87,12 @@ const Dashboard = () => {
     </Fragment>
   );
 }
- 
-export default Dashboard;
+Dashboard.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object
+};
+ const mapStateToProps = state => ({
+   isAuthenticated: state.auth.isAuthenticated,
+   user: state.auth.user
+ });
+export default connect(mapStateToProps, { loadUser })(Dashboard);
