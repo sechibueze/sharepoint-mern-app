@@ -53,6 +53,21 @@
 }
 </code></pre>
 
+### Get user by token
+> GET 200 private /api/auth
+<pre><code>
+{
+  "status": true,
+  "message": "current user",
+  "data": {
+    "id": "5e95db30c90c692054640e4e",
+    "name": "Test Tester",
+    "email": "test@test.com",
+    "avatar": "https://s.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=150&d=mm&r=pg"
+  }
+}
+</code></pre>
+
 ### Get LoggedIn User Profile
 > POST 200 private /api/profiles/me
 
