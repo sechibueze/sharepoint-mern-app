@@ -5,6 +5,7 @@ const {  validationResult } = require('express-validator');
 
 const User = require('../models/User');
 
+// User signup
 const signup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -61,7 +62,7 @@ const signup = (req, res) => {
   });
 };
 
-
+//User login
 const login = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -115,4 +116,27 @@ const login = (req, res) => {
   });
 };
 
-module.exports = {signup, login};
+
+const getUserByToken = (req, res ) => {
+  const currentUserId = req.currentUserId;
+  const filter = { _id: currentUserId};
+  User.findOne(filter)
+    .select('-password')
+    .then(user => {
+      if (!user) return res.status(401).json({ status: false, errors: ['No user with such credentials'] });
+      
+      // Found user
+      const { name, email, avatar} = user;
+      return res.status(200).json({
+        status: true,
+        message: 'current user',
+        data: { id: user._id, name, email, avatar }
+      });
+
+    })
+    .catch(err =>{
+      if (err) return res.status(500).json({ status: false, errors: ['Internal Server Error:: Failed to find user'] });
+
+    });
+}
+module.exports = {signup, login, getUserByToken};
