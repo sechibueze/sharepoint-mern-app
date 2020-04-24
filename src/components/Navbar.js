@@ -8,8 +8,9 @@ const Navbar = ({ isAuthenticated, logout }) => {
   const authLinks = (
     <div className="navlinks">
       <Link to='/dashboard'>Dashboard</Link>
+      <Link to='/posts'>Posts</Link>
       <Link to='/profiles'>Profiles</Link>
-      <Link onClick={() => logout()}> Logout </Link>
+      <span onClick={() => logout()}> Logout </span>
     </div>
   );
   // For visitors
@@ -24,19 +25,12 @@ const Navbar = ({ isAuthenticated, logout }) => {
       <div className="container clearfix">
 
         <Link className="logo logo-link" to='/'>
-          <span className="logo-icon fa fa-book fa-2x"></span>
+          <span className="logo-icon fa fa-connectdevelop fa-2x"></span>
           {' '}
-          <span className="logo-text">Educatus</span>
+          <span className="logo-text">Sharepoint</span>
         </Link>
 
-
-        
-      {/* <span className="menu-toggler fa fa-bars fa-2x"></span> */}
-
-      
-        
-          { isAuthenticated ? authLinks : guestLinks }
-        
+          { isAuthenticated ? authLinks : guestLinks }      
       </div>
     </nav>
    );

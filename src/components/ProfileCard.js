@@ -1,24 +1,26 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-const ProfileCard = () => {
+import Skillset from './Skillset';
+const ProfileCard = ({ profile }) => {
+  const {status, company, location, skills, user: { _id, name, avatar } } = profile;
   return (
     <Fragment>
-     
+   
       <div className="profile p-2">
         <div className="profile-image p-1">
-          <img src="./img/1_9kiIj-ZaWItE0sIMBRdlDg.jpeg" alt='person professional' style={{width: '90px', height: '90px', borderRadius: '50%'}} />
+          <img src={avatar} alt={`${name}-profile`} style={{width: '90px', height: '90px', borderRadius: '50%'}} />
 
         </div>
         <div className="profile-info p-1">
-          <h2 className="info"> Abraham Linkon</h2>
-          <p className=""> President at United Corporations</p>
-          <p className="mb-1"> New Dehli, India</p>
-          <Link to={`/profiles/123`} className="btn btn-primary btn-sm my-1"> View Profile</Link>
+          <h2 className="info"> { name } </h2>
+          <p className="my-1"> {`${ status } at ${ company }`} </p>
+          <p className="mb-1"> { location } </p>
+          <Link to={`/profiles/${_id}`} className="btn btn-primary btn-sm my-1"> View Profile</Link>
         </div>
         <div className="skills p-1">
-          <p> <span className="fa fa-check"></span> Literacy </p>
-          <p className="py-1"> <span className="fa fa-check"></span> Literacy </p>
-          <p> <span className="fa fa-check"></span> Literacy </p>
+          <h3> Skillset </h3>
+          <Skillset skills={ skills } />
+         
         </div>
       </div>
     </Fragment>

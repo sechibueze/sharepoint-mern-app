@@ -1,6 +1,4 @@
-/* ***** 
-***
-*/
+
 
 * {
   margin: 0;
@@ -555,6 +553,12 @@ table.table tbody td {
           align-items: flex-start;
 }
 
+.post-discussion-btn {
+  display: block;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
 .post .post-image {
   width: 100%;
   max-height: 8rem;
@@ -634,10 +638,8 @@ table.table tbody td {
     width: 100%;
     padding: .5rem .75rem;
   }
-  .post-card .post-stats span:last-child {
+  .post-card .post-stats {
     display: block;
-    margin: .85rem auto;
-    text-align: center;
   }
   .member-profile .skills-bio-wrapper {
     display: block;
