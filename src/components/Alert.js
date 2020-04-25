@@ -6,7 +6,7 @@ const Alert = ({ alerts }) => {
   return (
     <Fragment>     
       {
-        alerts.map(alert => <div key={alert.id} className='alert alert-danger'>{alert.text}</div>)
+        alerts.map(alert => <div key={alert.id} className={`alert alert-${ alert.type }`}>{alert.text}</div>)
       }
     </Fragment>
   );
@@ -18,4 +18,4 @@ Alert.propTypes = {
 const mapStateToProps = state => ({
   alerts: state.alert.messages
 });
-export default connect(mapStateToProps)(Alert);;
+export default connect(mapStateToProps)(Alert);

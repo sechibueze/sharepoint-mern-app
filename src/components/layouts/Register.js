@@ -23,7 +23,10 @@ const Register = ({ isAuthenticated, registerUser, setAlert}) => {
   const handleRegistration = e => {
     e.preventDefault();
     const { name, email, password,confirm_password } = state;
-    if (password !== confirm_password) {
+
+    if (!name || !email || !password || !confirm_password ){
+      setAlert('All fields are required');
+    } else if(password.trim() !== confirm_password.trim()) {
       setAlert('Password does not match');
     } else{
       registerUser({ name, email, password});
@@ -40,9 +43,9 @@ const Register = ({ isAuthenticated, registerUser, setAlert}) => {
         <p className="py-1">Join our community of professionals</p>
         <sup>*</sup> Required
           <Alert />
-        {/* <!-- Name field --> */}
+       
       <div className="form-group">
-          <label for="name">Name</label>
+          <label htmlFor="name">Name <sup>*</sup> </label>
           <input 
             name="name"
             onChange={handleChange} 
@@ -51,25 +54,28 @@ const Register = ({ isAuthenticated, registerUser, setAlert}) => {
             className="form-control" />
         </div>
 
-        {/* <!-- Email --> */}
+       
       <div className="form-group">
-          <label for="email">Email<sup>*</sup></label>
+          <label htmlFor="email">Email<sup>*</sup></label>
           <input 
             name="email" 
             onChange={handleChange} 
             type="email" 
-            className="form-control" />
+            className="form-control"
+            placeholder="ksimon@simon.com"
+           />
+          <small><b>Sharepoint</b> uses gravatar. Be sure to use an associated email account </small>
         </div>
 
-        {/* <!-- Password --> */}
+    
       <div className="form-group">
-          <label for="password">Password<sup>*</sup></label>
+          <label htmlFor="password">Password<sup>*</sup></label>
         <input name="password" onChange={handleChange}  type="password" placeholder='Password' id='password' className="form-control" />
         </div>
 
-        {/* <!-- Confirm Password --> */}
+       
       <div className="form-group">
-          <label for="confirm_password">Confirm password<sup>*</sup></label>
+          <label htmlFor="confirm_password">Confirm password<sup>*</sup></label>
         <input name="confirm_password" onChange={handleChange} type="password" placeholder='Confirm Password' id='confirm_password' className="form-control" />
         </div>
 

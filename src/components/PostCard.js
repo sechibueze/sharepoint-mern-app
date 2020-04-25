@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 const PostCard = ({ post }) => {
-  const likePost = id => {
-    console.log('Post to like id::', id)
-    alert(`Post to like :: ${ id.toString() }`)
-  }
+  
   const { _id, content, comments, likes } = post;
   return (
     <Fragment>
@@ -21,7 +18,7 @@ const PostCard = ({ post }) => {
             { content }
           </article>
           <div className="post-stats my-1">
-            <span onClick={() => likePost(_id)} className="px-1 fa fa-thumbs-up">{likes.length } </span>
+            <span className="px-1 fa fa-thumbs-up">{likes.length } </span>
             <span className="mx-1 fa fa-thumbs-down"></span>
             <span className="px-1 mx-1  fa fa-comment-o"> {`  ${comments.length}` }</span>
             <Link to={`/posts/${_id}`} className="btn btn-primary post-discussion-btn">Discussion</Link>

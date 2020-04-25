@@ -35,7 +35,7 @@ export const loadUser = () => (dispatch, getState) => {
     .catch(err => {
       // Get errors from response object
       
-      let errorText = err.toString();
+      let errorText = err.response.statusText ||  err.toString();
       dispatch(setAlert(errorText));
       dispatch({ type: AUTH_ERROR });
     });
@@ -60,7 +60,7 @@ export const registerUser = userData => dispatch => {
     })
     .catch(err => {
       
-      let errorText = err.response.data;
+      let errorText = err.response.statusText || err.response.statusText || err.toString();;
 
       if (typeof err.response.data === 'object') {
         errorText = err.response.data.errors[0];
@@ -97,12 +97,7 @@ export const loginUser = (email, password) => dispatch => {
     })
     .catch(err => {
       
-      let errorText = err.toString();
-
-      // if (typeof err.response.data === 'object') {
-      //   errorText = err.response.data.errors[0];
-      // }
-      // errorText = err.response.data;
+      let errorText = err.response.statusText ||  err.toString();
 
       dispatch(setAlert(errorText));
     });

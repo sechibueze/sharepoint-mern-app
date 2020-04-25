@@ -3,9 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addExperience } from '../../actions/profileActions';
-const AddExperience = ({ addExperience, history }) => {
-  const [currentExperience, setCurrentExperience] = useState(false);
 
+
+const AddExperience = ({ addExperience, history }) => {
+
+const [currentExperience, setCurrentExperience] = useState(false);
   const [experience, setExperience] = useState({
     title: '',
     company: '',
@@ -25,9 +27,7 @@ const AddExperience = ({ addExperience, history }) => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-
-    // console.log('Add ed data::', experience)
+    e.preventDefault(); 
     addExperience(experience, history);
   };
 
@@ -37,26 +37,27 @@ const AddExperience = ({ addExperience, history }) => {
 
       <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <p className="text text-primary">Add Experience</p>
+        <sup>*</sup>Required
         <div className="form-group">
-          <label htmlFor="company">Company</label>
-          <input type="text" value={company} onChange={(e) => handleChange(e)} name="company" className="form-control" placeholder="Company" />
+          <label htmlFor="company">Company<sup>*</sup></label>
+          <input type="text" value={company} required onChange={(e) => handleChange(e)} name="company" className="form-control" placeholder="Company or Organization" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input type="text" value={title} onChange={(e) => handleChange(e)} name="title" className="form-control" placeholder="Title" />
+          <label htmlFor="title"><sup>*</sup>Title</label>
+          <input type="text" required value={title} onChange={(e) => handleChange(e)} name="title" className="form-control" placeholder="What role did you play ?" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">Location<sup>*</sup></label>
           <input type="text" value={location} 
-          onChange={(e) => handleChange(e)} name="location" 
-          className="form-control" placeholder="Location" />
+          onChange={(e) => handleChange(e)} name="location" required
+          className="form-control" placeholder="City, State" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="from">From</label>
-          <input type="text" value={from} onChange={(e) => handleChange(e)} name="from" className="form-control" placeholder="From" />
+          <label htmlFor="from">From<sup>*</sup></label>
+          <input type="date"  value={from} onChange={(e) => handleChange(e)} name="from" className="form-control" placeholder="When did you start?" />
         </div>
 
         <div className="form-group">
@@ -79,21 +80,16 @@ const AddExperience = ({ addExperience, history }) => {
 
         <div className="form-group">
           <label htmlFor="to">To</label>
-          <input type="text" name="to"
+          <input type="date" name="to"
             value={to}
             disabled={currentExperience === true ? 'disabled' : ''}
-            onChange={
-              (e) => {
-                handleChange(e);
-                // setCurrentEducation(!currentEducation);
-              }
-            }
-            className="form-control" placeholder="To" />
+            onChange={(e) =>handleChange(e)}
+            className="form-control" placeholder="When did you leave, if so?" />
         </div>
 
         <div className="form-group">
           <label htmlFor="description">Description</label>
-          <textarea name="description" value={description} onChange={(e) => handleChange(e)} placeholder="Description" className="form-control" cols="10" rows="8" />
+          <textarea name="description" value={description} onChange={(e) => handleChange(e)} placeholder="Share you moments and roles with the community" className="form-control" cols="10" rows="8" />
         </div>
 
         <button className="btn btn-primary" type="submit">Add Experience</button>

@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEducation } from '../../actions/profileActions';
 const AddEducation = ({ addEducation, history }) => {
-  const [currentEducation, setCurrentEducation] = useState(false);
+  
 
   const [ education, setEducation] = useState({
     school: '',
     degree: '',
     fieldofstudy: '',
-    current: currentEducation,
+    current: '',
     from: '',
     to: '',
     description: ''
   });
 
-  
   const handleChange = ({ target: {name, value}}) => {
     setEducation({
       ...education,
@@ -26,50 +25,49 @@ const AddEducation = ({ addEducation, history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
-    // console.log('Add ed data::', education)
     addEducation(education, history);
   };
 
-  const { school, degree, fieldofstudy, from, to, description } = education;
+  const { school, degree, fieldofstudy, from, current, to, description } = education;
   return (
     <Fragment>
     
       <form className="form" onSubmit={(e) => handleSubmit(e) }>
         <p className="text text-primary">Add Education</p>
+        <sup>*</sup> Required
         <div className="form-group">
-          <label htmlFor="school">School</label>
-          <input type="text" value={school} onChange={(e) => handleChange(e)} name="school" className="form-control" placeholder="School attended" />
+          <label htmlFor="school">School<sup>*</sup></label>
+          <input type="text" required value={school} onChange={(e) => handleChange(e)} name="school" className="form-control" placeholder="School or programme attended" />
         </div>
         
         <div className="form-group">
-          <label htmlFor="degree">Degree</label>
-          <input type="text" value={degree} onChange={(e) => handleChange(e)}  name="degree" className="form-control" placeholder="Degree" />
+          <label htmlFor="degree">Degree<sup>*</sup></label>
+          <input type="text" required value={degree} onChange={(e) => handleChange(e)}  name="degree" className="form-control" placeholder="Degree obtained" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="fieldofstudy">Field of Study</label>
-          <input type="text" value={fieldofstudy} onChange={(e) => handleChange(e)}  name="fieldofstudy" className="form-control" placeholder="Field of study" />
+          <label htmlFor="fieldofstudy">Field of Study<sup>*</sup></label>
+          <input type="text" required value={fieldofstudy} onChange={(e) => handleChange(e)}  name="fieldofstudy" className="form-control" placeholder="Field or course of study" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="from">From</label>
-          <input type="text" value={from} onChange={(e) => handleChange(e)}  name="from" className="form-control" placeholder="From" />
+          <label htmlFor="from">From<sup>*</sup></label>
+          <input type="date" required value={from} onChange={(e) => handleChange(e)}  name="from" className="form-control" placeholder="When did you start the programme" />
         </div>
 
         <div className="form-group">
           <span >
             
             <input 
-              type="checkbox" checked={currentEducation} 
+              type="checkbox" checked={ current ? true : false } 
               name="current" 
-              value={currentEducation}
+              value={current}
               onChange={(e) => {
                 setEducation({
                   ...education,
-                  current: !currentEducation
+                  current: e.target.checked
                 });
-                setCurrentEducation(!currentEducation);
+               
               }}/>
             {` Current`} 
           </span>    
@@ -77,21 +75,16 @@ const AddEducation = ({ addEducation, history }) => {
 
         <div className="form-group">
           <label htmlFor="to">To</label>
-          <input type="text" name="to" 
+          <input type="date" name="to" 
           value={to}
-            disabled={currentEducation === true ? 'disabled' : ''} 
-            onChange={
-              (e) => {
-                handleChange(e);
-                // setCurrentEducation(!currentEducation);
-              }
-             }
-          className="form-control" placeholder="To" />
+            disabled={current === true ? 'disabled' : ''} 
+            onChange={(e) => handleChange(e)}
+          className="form-control" placeholder="WHen did you complete the programme" />
         </div>
 
         <div className="form-group">
           <label htmlFor="description">Description</label>
-          <textarea name="description" value={description} onChange={(e) => handleChange(e)}  placeholder="Description" className="form-control" cols="10" rows="8" />
+          <textarea name="description" value={description} onChange={(e) => handleChange(e)}  placeholder="Share your experience from the programme" className="form-control" cols="10" rows="8" />
         </div> 
 
         <button className="btn btn-primary" type="submit">Add Education</button>

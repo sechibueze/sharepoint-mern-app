@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { SET_PROFILE, SET_ALL_PROFILES, SET_PROFILE_BY_USER_ID } from './types';
+import { SET_PROFILE, 
+  SET_ALL_PROFILES, 
+  SET_PROFILE_BY_USER_ID,
+  CREATE_PROFILE,
+  ADD_EDUCATION,
+  ADD_EXPERIENCE,
+  DELETE_EDUCATION,
+  DELETE_EXPERIENCE
+} from './types';
 import { setAlert } from './alertActions';
 import { getAuthHeaders } from './authActions';
 // get the loggedin user profile
@@ -13,7 +21,8 @@ export const getCurrentProfile = () => dispatch => {
       });
     })
     .catch(err => {
-      const errorText = err.response.data.errors[0];
+      let errorText = err.response.data.errors[0] || err.response.statusText || err.toString();
+
       dispatch(setAlert(errorText));
     });
 };
@@ -31,7 +40,7 @@ export const getProfileByUserId = id => dispatch => {
       });
     })
     .catch(err => {
-      const errorText = err.toString();
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 };
@@ -49,19 +58,19 @@ export const createProfile = (profileData, history, edit = false) => dispatch =>
   axios.post('/api/profiles', body, configHeaders)
     .then(({ data }) => {
       dispatch({
-        type: SET_PROFILE,
+        type: CREATE_PROFILE,
         payload: data.data
       });
 
       
       const successText = edit === true ? 'Profile Updated' : 'Profile created';
-      dispatch(setAlert(successText));
+      dispatch(setAlert(successText, 'success'));
 
       history.push('/dashboard');
     })
     .catch(err => {
-      console.log('status text', err.response.statusText)
-      const errorText = err.response.statusText;
+      console.log('err re', err.response)
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 
@@ -79,11 +88,11 @@ export const getAllProfiles = () => dispatch => {
 
 
       const successText = 'All Profiles';
-      dispatch(setAlert(successText));
+      dispatch(setAlert(successText, 'success'));
     })
     .catch(err => {
       
-      const errorText = err.response.statusText;
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 
@@ -97,17 +106,17 @@ export const addEducation = (educationData, history) => dispatch => {
     .then(({ data }) => {
 
       dispatch({
-        type: SET_PROFILE,
+        type: ADD_EDUCATION,
         payload: data.data
       });
 
       const successText = 'Education added';
-      dispatch(setAlert(successText));
+      dispatch(setAlert(successText, 'success'));
 
       history.push('/dashboard');
     })
     .catch(err => {
-      const errorText = err.response.statusText;
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 };
@@ -120,16 +129,16 @@ export const addExperience = (experienceData, history) => dispatch => {
     .then(({ data }) => {
 
       dispatch({
-        type: SET_PROFILE,
+        type: ADD_EXPERIENCE,
         payload: data.data
       });
 
       const successText = 'Experience added';
-      dispatch(setAlert(successText));
+      dispatch(setAlert(successText, 'success'));
       history.push('/dashboard');
     })
     .catch(err => {
-      const errorText = err.response.statusText;
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 };
@@ -143,16 +152,17 @@ export const deleteEducation = id => dispatch => {
     .then(({ data }) => {
 
       dispatch({
-        type: SET_PROFILE,
+        type: DELETE_EDUCATION,
         payload: data.data
       });
 
       const successText = 'Education deleted';
-      dispatch(setAlert(successText));
+      dispatch(setAlert(successText, 'success'));
       // history.push('/dashboard');
     })
     .catch(err => {
-      const errorText = err.response.statusText;
+      // const errorText = err.response.statusText;
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 };
@@ -166,16 +176,17 @@ export const deleteExperience = id => dispatch => {
     .then(({ data }) => {
 
       dispatch({
-        type: SET_PROFILE,
+        type: DELETE_EXPERIENCE,
         payload: data.data
       });
 
       const successText = 'Experience deleted';
-      dispatch(setAlert(successText));
-      // history.push('/dashboard');
+      dispatch(setAlert(successText, 'success'));
+     
     })
     .catch(err => {
-      const errorText = err.response.statusText;
+      // const errorText = err.response.statusText;
+      let errorText = err.response.statusText || err.toString();
       dispatch(setAlert(errorText));
     });
 };

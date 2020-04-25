@@ -7,6 +7,7 @@ import Education from '../Education';
 import Experience from '../Experience';
 import Skillset from '../Skillset';
 import SocialMediaLinks from '../SocialMediaLinks';
+import Spinner from '../Spinner';
 const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
 
   
   return (
-    profileByUserId === null ? (<h1> Loading ...</h1>) : (
+    profileByUserId === null ? (<Spinner />) : (
       <Fragment>
 
         <div className="member-profile">
@@ -48,17 +49,19 @@ const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
             </div>
           </div>
 
-          <div className="edu-exp-wrapper">
+          <div className="edu-exp-wrapper"
+            style={{ overflowX: 'scroll'}}
+          >
             {/* <!-- education --> */}
             <div className="education">
-              <h2 className="text text-primary"> Education Qualifications </h2>
+              <h2 className="text text-primary"> Education  </h2>
               <Education educations={profileByUserId.education} />
 
             </div>
 
             {/* <!-- Experience --> */}
             <div className="experience">
-              <h2 className="text text-primary"> Work Experience </h2>
+              <h2 className="text text-primary">  Experience </h2>
               <Experience experiences={profileByUserId.experience} />
             </div>
           </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-// import { withRouter } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteExperience } from '../actions/profileActions';
@@ -8,6 +8,14 @@ const Experience = ({ experiences, deleteExperience }) => {
     if (window.confirm('Are you sure? This is irreverible!')) {
       deleteExperience(id);
     }
+  }
+  if (experiences.length < 1) {
+    return (
+      <Fragment>
+        <h2 className='my-2'> No work experience info provided</h2>
+        {/* <Link className='btn btn-primary' to='/add-experience'> Add Work experience </Link> */}
+      </Fragment>
+    )
   }
   const renderExperience = experiences.map(experience => (
     

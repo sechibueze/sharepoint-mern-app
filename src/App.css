@@ -410,7 +410,7 @@ table.table tbody td {
   height: 100vh;
   margin: auto;
   position: relative;
-  background: url("./img/programming-503x225.png");
+  background: url("./img/spotlight.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -581,9 +581,9 @@ table.table tbody td {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
+  /* -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
+          justify-content: center; */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
