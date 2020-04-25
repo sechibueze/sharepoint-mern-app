@@ -46,7 +46,7 @@ const createPost = (req, res) => {
 /**** Get All Posts */
 const getAllPosts = (req, res) => {
   // Already authenticated with token
-  Post.find()
+  Post.find({})
     .then(posts => {
       if (!posts) return res.status(401).json({ status: false, errors: ['Internal Server Error:: No Post is available'] });
 
@@ -67,6 +67,11 @@ const getPostById = (req, res) => {
   // Already authenticated with token
   const filter = { _id: req.params.id};
   Post.findOne(filter)
+    .populate({
+      path: 'comments.user',
+      select: ['name'],
+      model: User
+    })
     .then(post => {
       if (!post) return res.status(401).json({ status: false, errors: ['Internal Server Error:: No Post is available'] });
 
@@ -79,6 +84,28 @@ const getPostById = (req, res) => {
     })
     .catch(err => {
       if (err) return res.status(500).json({ status: false, errors: ['Internal Server Error:: failed to get all posts'] });
+    });
+}
+
+/**** Get All Posts by UserId */
+const getPostsByUserId = (req, res) => {
+  // Already authenticated with token
+  // const currentUserId = req.currentUserId;
+  const filter = { user : req.currentUserId};
+  console.log('user id', filter )
+  Post.find(filter)
+    .then(posts => {
+      // if (!posts) return res.status(401).json({ status: false, errors: ['Internal Server Error:: No Post is available'] });
+
+      // Posts exists at least []
+      return res.status(200).json({
+        status: true,
+        message: 'All posts by you',
+        data: posts
+      });
+    })
+    .catch(err => {
+      if (err) return res.status(500).json({ status: false, errors: ['Internal Server Error:: failed to get all posts by user id'] });
     });
 }
 
@@ -129,7 +156,7 @@ const likePost = (req, res) => {
        
         return likeId._id.toString() === currentUserId;
       });
-      console.log('User has liked post', hasLikedPost)
+      
       if (hasLikedPost) {
         return res.status(400).json({
           status: false,
@@ -258,9 +285,11 @@ const deleteComment = (req, res) => {
     const postId = req.params.post_id;
     const commentId = req.params.comment_id;
     const currentUserId = req.currentUserId;
-    const filter = { _id: postId, user: currentUserId};
+    const filter = { _id: postId };
+    
     Post.findOne(filter)
       .then(post => {
+       
         if (!post) return res.status(500).json({ status: false, errors: ['Internal Server Error:: No Post for comment deleting'] });
 
         post.comments = post.comments.filter(comment => comment._id.toString() !== commentId);
@@ -289,6 +318,7 @@ module.exports = {
   getAllPosts, 
   getPostById, 
   deletePostById,
+  getPostsByUserId,
   likePost,
   unlikePost,
   addComment,

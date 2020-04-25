@@ -5,6 +5,7 @@ const {
   createPost, 
   getAllPosts, 
   getPostById,
+  getPostsByUserId,
   deletePostById,
   likePost,
   unlikePost,
@@ -34,6 +35,13 @@ router.get('/', checkAuth, getAllPosts);
  * @access private
  */
 router.get('/:id', checkAuth, getPostById);
+
+/***
+ * @route GET 200 /api/posts/users
+ * @description Get post by user id
+ * @access private
+ */
+router.get('/users/:id', checkAuth, getPostsByUserId);
 
 /***
  * @route DELETE 200 /api/posts/:id

@@ -1,7 +1,7 @@
 {
-  "name": "educatus-mern-app",
+  "name": "sharepoint-api",
   "version": "1.0.0",
-  "description": "> A collaboration platform for educators to learn, reflect and share",
+  "description": "> A collaboration platform for professionals to learn, reflect and share",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
