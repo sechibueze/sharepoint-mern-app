@@ -1,5 +1,7 @@
 # Sharepoint Community Network
-> [Sharepoint Live App](https://.netlify.app)
+> [see Sharepoint API live](https://sharepoint-v1-api.herokuapp.com/)
+
+> [see Sharepoint Live App](https://sharepoint.netlify.app/)
 
 > A collaboration platform for professionals (educators & developers) to learn, reflect, connect and share ideas & resources with others.
 
@@ -8,7 +10,7 @@
 > Built with the MERN stack
 
 # API Docs
-[see Sharepoint API](https://educatus-mern-app.herokuapp.com/)
+[see Sharepoint API](https://sharepoint-v1-api.herokuapp.com/)
 
 # Features
 - Signup & Login
