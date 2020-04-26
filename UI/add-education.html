@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educatus MERN </title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/fa.min.css" />
+</head>
+
+<body class="bg-light">
+  <nav class="navbar bg-dark py-1">
+    <div class="container clearfix">
+
+      <a class="logo logo-link" href="./index.html">
+        <span class="logo-icon fa fa-code fa-2x"></span>
+        <span class="logo-text">Educatus</span>
+      </a>
+
+
+      <!-- Hamburger menu toggler -->
+      <span class="menu-toggler fa fa-bars fa-2x"></span>
+
+      <!-- Navigation links -->
+      <div class="navlinks">
+        <a href="./dashboard.html"> Dashboard</a>
+        <a href="./register.html"> Register</a>
+        <a href="./login.html"> Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Add Education-->
+  <div class="container">
+    <form class="form">
+      <p class="text text-primary">Add Education</p>
+      <div class="form-group">
+        <label for="school">School</label>
+        <input type="text" name="school" class="form-control" placeholder="School attended" />
+      </div>
+      <div class="form-group">
+        <label for="degree">Degree</label>
+        <input type="text" name="degree" class="form-control" placeholder="Degree" />
+      </div>
+
+      <div class="form-group">
+        <label for="fieldofstudy">Field of Study</label>
+        <input type="text" name="fieldofstudy" class="form-control" placeholder="Field of study" />
+      </div>
+
+      <div class="form-group">
+        <label for="from">From</label>
+        <input type="text" name="from" class="form-control" placeholder="From" />
+      </div>
+
+      <div class="form-group">
+        <label for="to">To</label>
+        <input type="text" name="to" class="form-control" placeholder="To" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" placeholder="Description" class="form-control" cols="10" rows="8"></textarea>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Add Education</button>
+
+
+    </form>
+  </div>
+
+</body>
+
+</html>

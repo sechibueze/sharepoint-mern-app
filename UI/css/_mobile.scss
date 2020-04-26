@@ -1,0 +1,126 @@
+
+@media (max-width: 480px){
+  
+
+  // Expand container
+  .container{
+    width: 95%;
+    margin: auto;
+  }
+
+  // stack .navlinks
+  .navbar{
+    .container{
+      .logo{
+        float: none;
+        display: block;
+      }
+      
+      .navlinks{
+        float: none;
+        display: block;
+        padding: .75rem 0rem;
+      }
+    }
+  }
+
+  .banner{
+    .landing{
+      padding: 2.5rem 0rem;
+      .container{
+        .buttons{
+          a{
+            display: block;
+            margin: 1.2rem .75rem;
+          }
+        }
+      }
+    }
+    }
+
+  .hide-sm{
+    display: none;
+  }
+
+  .dashboard-navigation{
+    a{
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin-bottom: .75rem;
+    }
+  }
+
+  table.table{
+    margin-bottom: 1.75rem;
+  }
+
+  // Manage post
+  .add-post{
+    padding: .4rem .75rem;
+  }
+  .post-creator-image{
+    padding: .75rem;
+  }
+  .post{
+    .post-content{
+       width: 100%;
+      padding: .5rem .75rem;
+    }
+  }
+// Post card
+   .post-card{
+      .post-stats{
+        display: block;
+      }
+    }
+
+
+ 
+
+  
+
+  // profile page
+  .member-profile{
+    .skills-bio-wrapper{
+      display: block;
+    }
+    .edu-exp-wrapper{
+      display: block;
+    }
+  }
+  
+}
+
+@media (max-width: 760px){
+  body{
+    background-color: transparent;
+  }
+
+  
+
+  // Profile listing
+  .profile-listing{
+    .profile{
+      display: block;
+      margin: auto;
+      text-align: center;
+      padding: .75rem .25rem;
+
+      .profile-image{
+        padding: .25rem;
+      }
+      .profile-info{
+        padding: .25rem;
+
+        a{
+          display: block;
+          margin: auto;
+        }
+      }
+      .skills{
+        padding: .25rem;
+      }
+    }
+  }
+}

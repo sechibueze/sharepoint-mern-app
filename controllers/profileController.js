@@ -78,7 +78,7 @@ const getCurrentUserProfile = (req, res) => {
        
       if (err) return res.status(500).json({ status: false, errors: ['Internal Server Error:: failed to get current user profile'] });
 
-      if (!currentUserProfile) return res.status(400).json({ status: false, errors: ['Internal Server Error:: No known/associated user profile found'] });
+      // if (!currentUserProfile) return res.status(400).json({ status: false, errors: ['Internal Server Error:: No known/associated user profile found'] });
 
       // currentUserProfile exist
 
@@ -121,14 +121,20 @@ const getProfileByUserId = (req, res) => {
 
 /**** Get ALL profiles */
 const getAllUserProfiles = (req, res) => {
-  Profile.find((err, Profiles) => {
-    if (err) return res.status(500).json({ status: false, errors: ['Internal Server Error:: failed to get all profiles'] });
-
+  Profile.find().populate({
+    path: 'user',
+    select: ['name', 'email', 'avatar'],
+    model: User
+  }).exec().then((Profiles) => {
+  
     return res.status(200).json({
       status: false,
       message: 'All user profiles',
       data: Profiles
     });
+
+  }).catch(err => {
+    return res.status(500).json({ status: false, errors: ['Internal Server Error:: failed to get all profiles'] });
 
   });
 }
@@ -185,6 +191,7 @@ const updateProfileEducation = ( req, res) => {
 
   if (to) newEducation.to = to;
   if (description) newEducation.description = description;
+  if (current) newEducation.current = current;
 
   // Find and update education field
   Profile.findOne({ user: currentUserId }, (err, foundProfile) => {
@@ -241,6 +248,7 @@ const updateProfileExperience = (req, res) => {
 
   if (to) newExperience.to = to;
   if (description) newExperience.description = description;
+  if (current) newExperience.current = current;
 
   // Find and update education field
   Profile.findOne({ user: currentUserId }, (err, foundProfile) => {

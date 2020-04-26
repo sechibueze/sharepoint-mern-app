@@ -21,7 +21,7 @@ const { updateProfileController,
 router.post('/', 
 checkAuth,
   [
-    check('status', 'status is not valid').isBoolean(), 
+    check('status', 'status is not valid').not().isEmpty(), 
     check('skills', 'skill is not valid').notEmpty()
   ] 
 , updateProfileController);

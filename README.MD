@@ -1,9 +1,11 @@
-# EDUCATUS-MERN-APP
+# Sharepoint Community Network
 
 > A collaboration platform for professionals (educators & developers) to learn, reflect, connect and share ideas & resources with others
 
-# API Docs
-[see Educatus API](https://educatus-mern-app.herokuapp.com/)
+# API Docs 
+> [see Sharepoint API live](https://sharepoint-v1-api.herokuapp.com/)
+
+> [see Sharepoint  Live App](https://sharepoint.netlify.app/)
 
 > Always pick what you want from the returned data. Some keys may not be relevant to your application. You may use Object destructuring.
 
@@ -341,7 +343,6 @@
   "message": "Record successfully deleted"
 }
 </code></pre>
-<<<<<<< HEAD
 
 ## Posts
 
@@ -431,8 +432,6 @@
 <pre><code>
 </code></pre>
 
-=======
->>>>>>> 7e965c9855ef2a9577ed8ee3505f01bccda2fd2f
 # Packages
 - Express
 - JWT

@@ -1,0 +1,255 @@
+
+.line{
+  width: 100%;
+  height: 1px;
+  padding-bottom: 1rem ;
+  margin-bottom: 1.2rem ;
+  border-bottom: 1px solid $dark-color;
+}
+
+// Backgrounds
+.bg{
+  &-dark{
+    @include set-background-color($dark-color)
+  }
+
+  &-primary{
+    @include set-background-color($primary-color)
+  }
+  &-light{
+    @include set-background-color($light-color)
+  }
+  &-success{
+    @include set-background-color($success-color)
+  }
+
+  &-danger{
+    @include set-background-color($danger-color)
+  }
+}
+
+// Alerts
+.alert{
+  padding: .75rem;
+  &-dark{
+    @include set-background-color($dark-color)
+  }
+
+  &-primary{
+    @include set-background-color($primary-color)
+  }
+  &-light{
+    @include set-background-color($light-color)
+  }
+  &-success{
+    @include set-background-color($success-color)
+  }
+
+  &-danger{
+    @include set-background-color($danger-color)
+  }
+}
+
+// Texts
+.text{
+  padding-left: .9rem;
+  
+  &-dark{
+    @include set-background-color($dark-color)
+  }
+
+  &-primary{
+    @include set-background-color($primary-color);
+    font-size: 2rem;
+  }
+  &-light{
+    @include set-background-color($light-color)
+  }
+  &-success{
+    @include set-background-color($success-color)
+  }
+
+  &-danger{
+    @include set-background-color($danger-color)
+  }
+}
+
+// Text sizes
+.x-large{
+  font-size: 4rem;
+  line-height: 1.2rem;
+  margin-bottom: 1rem;
+}
+.large{
+   font-size: 3rem;
+  line-height: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.info{
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+// .Buttons
+.btn{
+  padding: .75rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  &-md{
+    padding: 12px 18px;
+    font-size: 1.1rem;
+  }
+
+  &-sm{
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+  
+   &-dark{
+    @include set-background-color($dark-color);
+    &:hover{
+      background-color: lighten($dark-color, 5%);
+    }
+  }
+  &-primary{
+    @include set-background-color($primary-color);
+    &:hover{
+      background-color: lighten($primary-color, 5%);
+    }
+  }
+  &-light{
+    @include set-background-color($light-color);
+    &:hover{
+      background-color: lighten($light-color, 5%);
+    }
+  }
+  &-success{
+    @include set-background-color($success-color);
+    &:hover{
+      background-color: lighten($success-color, 5%);
+    }
+  }
+
+  &-danger{
+    @include set-background-color($danger-color);
+  }
+}
+// Globals
+.container{
+  margin: auto;
+  width: 80%;
+}
+.clearfix{
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+// Paddings & Margins
+$sizes: (1, 2, 3, 4);
+@each $size in $sizes {
+  // All round padding
+  .p-#{$size}{
+    padding: #{$size}rem;
+  }
+  // Padding top and bottom
+  .py-#{$size}{
+    padding: #{$size}rem 0rem;
+  }
+  // Padding left and right
+  .px-#{$size}{
+    padding: 0rem #{$size}rem;
+  }
+
+  // All round margin
+  .m-#{$size}{
+    margin: #{$size}rem;
+  }
+  // Margin top and bottom
+  .my-#{$size}{
+    margin: #{$size}rem auto;
+  }
+  // margin left and right
+  .mx-#{$size}{
+    margin: 0rem #{$size}rem;
+  }
+
+  // margin bottom
+  .mb-#{$size}{
+    margin-bottom: #{$size}rem;
+  }
+}
+
+// Forms
+
+.form{
+
+  .form-group{
+    margin: 1rem 0rem;
+
+    label{
+      display: block;
+      margin-bottom: .5rem;;
+    }
+
+    .form-control{
+      width: 100%;
+      border: 1px solid #443;
+      outline: 0;
+      padding: 10px 12px;
+    }
+   
+  }
+}
+
+// Tables
+table.table{
+  width: 100%;
+  display: block;
+  margin: auto;
+
+  thead{
+    tr{
+      background-color: #ddd;
+      th{
+        padding: 1rem;
+      }
+    }
+  }
+
+  tbody{
+    tr{ 
+      padding: 2rem 0rem;
+      text-align: left;
+      &:nth-of-type(even) {
+        background-color: $light-color;
+      }
+    }
+
+    td{
+      padding: 1rem;
+      height: 12px;
+    }
+  }
+}
+
+// Social media icons
+.fa-facebook{
+  color: #3b5998;
+}
+.fa-twitter{
+  color: #38a1f3;
+}
+.fa-instagram{
+  color: #3f729b;
+}
+.fa-youtube{
+  color: #c4302b;
+}
+.fa-linkedin{
+  color: #0077b5;
+}
