@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
@@ -24,7 +24,6 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
     }else{
       loginUser(email, password);
     }
-
   }
 
   if (isAuthenticated) {
@@ -41,9 +40,9 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
         <sup>*</sup> Required
         
           <Alert />
-         {/* <!-- Email --> */}
+        
         <div className="form-group">
-          <label for="email">Email<sup>*</sup></label>
+          <label htmlFor="email">Email<sup>*</sup></label>
           <input
             name="email"
             onChange={handleChange}
@@ -51,9 +50,9 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
             className="form-control" />
         </div>
 
-        {/* <!-- Password --> */}
+      
         <div className="form-group">
-          <label for="password">Password<sup>*</sup></label>
+          <label htmlFor="password">Password<sup>*</sup></label>
           <input name="password" onChange={handleChange} type="password" placeholder='Password' id='password' className="form-control" />
         </div>
 

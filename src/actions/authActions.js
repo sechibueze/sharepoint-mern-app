@@ -2,11 +2,10 @@ import axios from 'axios';
 import { SET_CURRENT_USER, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from './types';
 import { setAlert } from './alertActions';
 
-// load current user
-export const loadUser = () => (dispatch, getState) => {
-  // get token from state
-  const { token } = getState().auth;
-  console.log('loaduser tok', token)
+// setup config header
+export const getAuthHeaders = () =>{
+  // get token from localstorage
+  const token = localStorage.getItem('token');
   // prepare headers
   let configHeader = {
     headers: {
@@ -19,6 +18,12 @@ export const loadUser = () => (dispatch, getState) => {
     configHeader.headers["x-auth-token"] = token;
   }
 
+  return configHeader;
+}
+// load current user
+export const loadUser = () => (dispatch, getState) => {
+  
+  const configHeader = getAuthHeaders();
   // Make request
   axios.get('/api/auth', configHeader)
     .then(({ data }) => {
@@ -29,16 +34,8 @@ export const loadUser = () => (dispatch, getState) => {
     })
     .catch(err => {
       // Get errors from response object
-      // errors is an array
-      // console.log('auth err::', )
-      console.log('type err', typeof err)
-      console.log('type err', err)
-      let errorText = err.response.data;
-
-      if (typeof err.response.data === 'object') {
-        errorText = err.response.data.errors[0];
-      }
-
+      
+      let errorText = err.response.statusText ||  err.toString();
       dispatch(setAlert(errorText));
       dispatch({ type: AUTH_ERROR });
     });
@@ -63,7 +60,7 @@ export const registerUser = userData => dispatch => {
     })
     .catch(err => {
       
-      let errorText = err.response.data;
+      let errorText = err.response.statusText || err.response.statusText || err.toString();;
 
       if (typeof err.response.data === 'object') {
         errorText = err.response.data.errors[0];
@@ -75,25 +72,32 @@ export const registerUser = userData => dispatch => {
 // User can login
 export const loginUser = (email, password) => dispatch => {
   // Package request body
-  const body = { email, password};
+  const body = JSON.stringify({ email, password });
+  // prepare headers
+  let configHeader = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
   // make request
-  axios.post('/api/login', body)
+  axios.post('/api/login', body, configHeader)
     .then(({ data }) => {
       const { token } = data;
       // Set token in localStorage
-      localStorage.setItem('token', token);    
+      localStorage.setItem('token', token); 
+      // load the user
+      dispatch(loadUser());
+         
       dispatch({
         type: LOGIN_SUCCESS,
         payload: token
       }); 
+
+      
     })
     .catch(err => {
       
-      let errorText = err.response.data;
-
-      if (typeof err.response.data === 'object') {
-        errorText = err.response.data.errors[0];
-      }
+      let errorText = err.response.statusText ||  err.toString();
 
       dispatch(setAlert(errorText));
     });
