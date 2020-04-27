@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const normalizeUrl = require('normalize-url');
 const Profile = require('../models/Profile');
 const User = require('../models/User');
 
@@ -36,15 +37,15 @@ profileFields.socials = {};
   if (bio) profileFields.bio = bio;
   if (company) profileFields.company = company;
   if (location) profileFields.location = location;
-  if (website) profileFields.website = website;
+  if (website) profileFields.website = normalizeUrl(website);
   if (githubusername) profileFields.githubusername = githubusername;
   if (status) profileFields.status = status;
   if (skills) profileFields.skills = Array.isArray(skills) ? skills : skills.split(',').map(skill => ' ' + skill.trim());
   // Social media links :// Use normalize for urls
-  if (facebook) profileFields.socials.facebook = facebook;
-  if (twitter) profileFields.socials.twitter = twitter;
-  if (linkedin) profileFields.socials.linkedin = linkedin;
-  if (instagram) profileFields.socials.instagram = instagram;
+  if (facebook) profileFields.socials.facebook = normalizeUrl(facebook);
+  if (twitter) profileFields.socials.twitter = normalizeUrl(twitter);
+  if (linkedin) profileFields.socials.linkedin = normalizeUrl(linkedin);
+  if (instagram) profileFields.socials.instagram = normalizeUrl(instagram);
 
   // Update or Create a new profile data
   Profile.findOneAndUpdate(
