@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllProfiles }  from '../../actions/profileActions';
 import ProfileCard from '../ProfileCard';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 const ProfileList = ({ getAllProfiles, allProfiles }) => {
  
-  useEffect(() => getAllProfiles(), []);
+  useEffect(() => getAllProfiles(), [getAllProfiles]);
   
   return (
     <Fragment>
@@ -16,11 +16,10 @@ const ProfileList = ({ getAllProfiles, allProfiles }) => {
           <p className="">Browse and connect with professionals</p>
         </div>
         {allProfiles.length < 1 ?
-         (<Spinner />) :
+          (<h2 className="">No profiles yet</h2>) :
           (allProfiles.map( profile => 
             <ProfileCard key={`render-profile-${ profile._id}`} profile={profile}/>) )}
-       
-
+    
       </div>
     </Fragment>
   );

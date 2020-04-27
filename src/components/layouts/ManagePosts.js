@@ -11,7 +11,7 @@ const ManagePosts = ({ postsByUser, getPostsByUserId, newPost, postDeleted }) =>
   // const { postsByUser, getPostsByUserId } = props;
   useEffect(() => {
     getPostsByUserId();
-  }, [newPost, postDeleted]);
+  }, [getPostsByUserId ,newPost, postDeleted]);
  
   return (
     postsByUser === null ?

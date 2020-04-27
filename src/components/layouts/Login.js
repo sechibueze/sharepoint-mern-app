@@ -19,11 +19,12 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
   const handleLogin = e => {
     e.preventDefault();
     const { email, password } = state;
-    if (!email || !password) {
-      setAlert('All fields are required');
-    }else{
-      loginUser(email, password);
-    }
+    loginUser(email, password);
+    // if (!email || !password) {
+    //   setAlert('All fields are required');
+    // }else{
+    //   loginUser(email, password);
+    // }
   }
 
   if (isAuthenticated) {

@@ -21,9 +21,14 @@ export const getCurrentProfile = () => dispatch => {
       });
     })
     .catch(err => {
-      let errorText = err.response.data.errors[0] || err.response.statusText || err.toString();
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
 
-      dispatch(setAlert(errorText));
     });
 };
 
@@ -40,8 +45,14 @@ export const getProfileByUserId = id => dispatch => {
       });
     })
     .catch(err => {
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 // Create or Update profile
@@ -69,9 +80,14 @@ export const createProfile = (profileData, history, edit = false) => dispatch =>
       history.push('/dashboard');
     })
     .catch(err => {
-      console.log('err re', err.response)
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 
 };
@@ -92,8 +108,14 @@ export const getAllProfiles = () => dispatch => {
     })
     .catch(err => {
       
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 
 };
@@ -116,8 +138,14 @@ export const addEducation = (educationData, history) => dispatch => {
       history.push('/dashboard');
     })
     .catch(err => {
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -138,8 +166,14 @@ export const addExperience = (experienceData, history) => dispatch => {
       history.push('/dashboard');
     })
     .catch(err => {
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -161,9 +195,14 @@ export const deleteEducation = id => dispatch => {
       // history.push('/dashboard');
     })
     .catch(err => {
-      // const errorText = err.response.statusText;
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -185,9 +224,14 @@ export const deleteExperience = id => dispatch => {
      
     })
     .catch(err => {
-      // const errorText = err.response.statusText;
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 

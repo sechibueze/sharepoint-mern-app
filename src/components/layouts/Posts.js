@@ -6,7 +6,7 @@ import PostCard from '../PostCard';
 import Spinner from '../Spinner';
 const Posts = ({ getAllPosts, posts }) => {
   
-  useEffect(() => getAllPosts(), []);
+  useEffect(() => getAllPosts(), [getAllPosts]);
 
   return (
     posts === null ? 

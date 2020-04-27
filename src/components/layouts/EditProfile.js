@@ -22,7 +22,7 @@ const EditProfile = ({ createProfile, history, getCurrentProfile, currentProfile
   const [socialLinks, toggleSocialLinks] = useState(false);
   useEffect(() => {
     if(!currentProfile) getCurrentProfile();
-  }, [currentProfile]);
+  }, [getCurrentProfile, currentProfile]);
 
   // handle onChange
   const handleChange = ({ target }) => {
@@ -88,7 +88,7 @@ const EditProfile = ({ createProfile, history, getCurrentProfile, currentProfile
 
         <div className="form-group">
           <label htmlFor="website">Website</label>
-          <input type="url" name="website" value={website} onChange={(e) => handleChange(e)} className="form-control" placeholder="Website" />
+          <input type="text" name="website" value={website} onChange={(e) => handleChange(e)} className="form-control" placeholder="Website" />
         </div>
 
         <div className="form-group">
@@ -103,22 +103,22 @@ const EditProfile = ({ createProfile, history, getCurrentProfile, currentProfile
         <Fragment>
         <div className="form-group">
           <label htmlFor="facebook">Facebook</label>
-          <input type="url" name="facebook" value={facebook} onChange={(e) => handleChange(e)} className="form-control" placeholder="Facebook" />
+          <input type="text" name="facebook" value={facebook} onChange={(e) => handleChange(e)} className="form-control" placeholder="Facebook" />
         </div>
 
         <div className="form-group">
           <label htmlFor="twitter">Twitter</label>
-          <input type="url" name="twitter" value={twitter} onChange={(e) => handleChange(e)} className="form-control" placeholder="Twitter" />
+          <input type="text" name="twitter" value={twitter} onChange={(e) => handleChange(e)} className="form-control" placeholder="Twitter" />
         </div>
 
         <div className="form-group">
           <label htmlFor="instagram">Instagram</label>
-          <input type="url" name="instagram" value={instagram} onChange={(e) => handleChange(e)} className="form-control" placeholder="Instagram" />
+          <input type="text" name="instagram" value={instagram} onChange={(e) => handleChange(e)} className="form-control" placeholder="Instagram" />
         </div>
 
         <div className="form-group">
           <label htmlFor="linkedin">LinkedIn</label>
-          <input type="url" name="linkedin" value={linkedin} onChange={(e) => handleChange(e)} className="form-control" placeholder="LinkedIn" />
+          <input type="text" name="linkedin" value={linkedin} onChange={(e) => handleChange(e)} className="form-control" placeholder="LinkedIn" />
         </div>
       </Fragment>)}
         {/* <div className="form-group">

@@ -23,8 +23,14 @@ export const getAllPosts = () => dispatch => {
       });
     })
     .catch(err => {
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -39,8 +45,14 @@ export const getPostsByUserId = (id = 123) => dispatch => {
       });
     })
     .catch(err => {
-      let errorText = err.response.statusText || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -55,8 +67,14 @@ export const getPostByPostId = id => dispatch => {
       });
     })
     .catch(err => {
-      const errorText = err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -72,8 +90,14 @@ export const createPost = postData => dispatch => {
       });
     })
     .catch(err => {
-      const errorText = err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -93,8 +117,14 @@ export const likePostByPostId = postId => dispatch => {
     })
     .catch(err => {
       
-      const errorText = err.response.data.errors[0] || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -113,8 +143,14 @@ export const unlikePostByPostId = postId => dispatch => {
       dispatch(setAlert(data.message, 'success'));
     })
     .catch(err => {
-      const errorText = err.response.data.errors[0];
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -134,8 +170,14 @@ export const addCommentToPost = (postId, comment) => dispatch => {
       dispatch(setAlert(data.message, 'success'));
     })
     .catch(err => {
-      const errorText = err.response.data.errors[0] || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -155,8 +197,14 @@ export const removePostComment = (postId, commentId ) => dispatch => {
       dispatch(setAlert(data.message, 'success'));
     })
     .catch(err => {
-      const errorText = err.response.data.errors[0] || err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };
 
@@ -175,7 +223,13 @@ export const deletePostById = id => dispatch => {
       dispatch(setAlert(data.message, 'success'));
     })
     .catch(err => {
-      const errorText = err.toString();
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
+
     });
 };

@@ -27,6 +27,7 @@ export const loadUser = () => (dispatch, getState) => {
   // Make request
   axios.get('/api/auth', configHeader)
     .then(({ data }) => {
+      
       dispatch({
         type: SET_CURRENT_USER,
         payload: data.data
@@ -34,9 +35,14 @@ export const loadUser = () => (dispatch, getState) => {
     })
     .catch(err => {
       // Get errors from response object
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
       
-      let errorText = err.response.statusText ||  err.toString();
-      dispatch(setAlert(errorText));
       dispatch({ type: AUTH_ERROR });
     });
 };
@@ -49,24 +55,24 @@ export const registerUser = userData => dispatch => {
       const { token } = data;
       // Set token in localStorage
       localStorage.setItem('token', token);
-   
+      
+      // load the user
+      dispatch(loadUser());
+
       dispatch({
         type: REGISTER_SUCCESS,
         payload: token
-      });
-
-      // load the user
-      dispatch(loadUser());
+      }); 
     })
     .catch(err => {
-      
-      let errorText = err.response.statusText || err.response.statusText || err.toString();;
-
-      if (typeof err.response.data === 'object') {
-        errorText = err.response.data.errors[0];
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
       }
 
-      dispatch(setAlert(errorText));
     });
 };
 // User can login
@@ -96,10 +102,13 @@ export const loginUser = (email, password) => dispatch => {
       
     })
     .catch(err => {
-      
-      let errorText = err.response.statusText ||  err.toString();
-
-      dispatch(setAlert(errorText));
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.map(errorText => dispatch(setAlert(errorText)))
+      } else if (err.message) {
+        dispatch(setAlert(err.message));
+      } else {
+        dispatch(setAlert(err.toString()));
+      }
     });
 };
 

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { deleteEducation } from '../actions/profileActions';
-const Education = ({ educations, deleteEducation  }) => {
+const Education = ({ educations, deleteEducation, canManageEducation  }) => {
 
   const deleteEducationById = (id) => {
     if (window.confirm('Are you sure, this is irreversibel!!')) {
@@ -21,9 +22,16 @@ const Education = ({ educations, deleteEducation  }) => {
   const renderEducation =  educations.map(education => (
     <tr key={`Education-${education._id}`}>
       <td>{ education.school} </td>
-  <td className="hide-sm">{ `${education.from} - ${education.current ? 'Now' : education.to}` }</td>
+      <td className="hide-sm">
+        <Moment format='DD/MM/YYYY'>{ education.from }</Moment>
+        {' - '}
+        {education.current ? 'Now' : (<Moment format='DD/MM/YYYY'>{education.to}</Moment>) }
+      </td>
       <td>{`${education.degree}, ${education.fieldofstudy}`}</td>
-      <td> <span onClick={() => deleteEducationById(education._id)} className="btn btn-danger">DELETE</span></td>
+      
+      {canManageEducation ? (
+        <td> <span onClick={() => deleteEducationById(education._id)} className="btn btn-danger">DELETE</span></td>
+      ) : null }
     </tr>
   ));
   return (
