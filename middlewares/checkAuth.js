@@ -8,7 +8,7 @@ const checkAuth = (req, res, next) => {
    if (!token) {
      return res.status(401).json({
        status: false,
-       errors: ['Auth Failed:: No token in header']
+       errors: ['Auth Failed:: Access denied']
      });
    }
 
@@ -17,7 +17,7 @@ const checkAuth = (req, res, next) => {
     if (err) {
       return res.status(401).json({
         status: false,
-        errors: ['Auth Failed:: Invalid token']
+        errors: ['Auth Failed:: Invalid credentials']
       });
     }
 
