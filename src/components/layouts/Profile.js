@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProfileByUserId } from '../../actions/profileActions';
 import PropTypes from 'prop-types';
@@ -13,7 +13,7 @@ const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
   useEffect(() => {
     const id = match.params.id;
     getProfileByUserId(id);
-  }, [getProfileByUserId]);
+  }, [match.params.id, getProfileByUserId]);
 
 
   
@@ -26,7 +26,7 @@ const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
             <img src={profileByUserId.user.avatar} alt={`${profileByUserId.user.name}-profile`} style={{ width: '90px', height: '90px', borderRadius: '50%' }} />
             <h1 className="text text-primary"> {profileByUserId.user.name} </h1>
             <div className="connect-icons my-2">
-              {profileByUserId.website && <Link to={profileByUserId.website} className="fa fa-globe" />}
+              {profileByUserId.website && <a href={profileByUserId.website} rel='noopener noreferrer' target='_blank'><span className="fa fa-globe" /></a>}
               <SocialMediaLinks socialMediaLinks={profileByUserId.socials } />
             </div>
           </div>
@@ -55,14 +55,20 @@ const Profile = ({ profileByUserId, getProfileByUserId, match }) => {
             {/* <!-- education --> */}
             <div className="education">
               <h2 className="text text-primary"> Education  </h2>
-              <Education educations={profileByUserId.education} />
+              <Education 
+              educations={profileByUserId.education}
+              canManageEducation={false}
+             />
 
             </div>
 
             {/* <!-- Experience --> */}
             <div className="experience">
               <h2 className="text text-primary">  Experience </h2>
-              <Experience experiences={profileByUserId.experience} />
+              <Experience 
+                experiences={profileByUserId.experience}
+                canManageExperience={false}
+              />
             </div>
           </div>
 

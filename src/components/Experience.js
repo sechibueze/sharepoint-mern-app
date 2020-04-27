@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { deleteExperience } from '../actions/profileActions';
-const Experience = ({ experiences, deleteExperience }) => {
+const Experience = ({ experiences, deleteExperience, canManageExperience }) => {
   const deleteExperineceById = (id) => {
     if (window.confirm('Are you sure? This is irreverible!')) {
       deleteExperience(id);
@@ -23,10 +24,15 @@ const Experience = ({ experiences, deleteExperience }) => {
       <td> {experience.company} </td>
       <td> {experience.title } </td>
       <td className="hide-sm">  {experience.location} </td>
-      <td className="hide-sm"> 
-        {`${experience.from} - ${experience.current ? 'Now' : experience.to }`}
-        </td>
-      <td> <span onClick={() => deleteExperineceById(experience._id)} className="btn btn-danger">DELETE</span></td>
+      <td className="hide-sm">
+        <Moment format='DD/MM/YYYY'>{experience.from}</Moment>
+        {' - '}
+        {experience.current ? 'Now' : (<Moment format='DD/MM/YYYY'>{experience.to}</Moment>)}
+      </td>
+      { canManageExperience ? 
+        (<td> <span onClick={() => deleteExperineceById(experience._id)} className="btn btn-danger">DELETE</span></td>):
+        null
+      }
     </tr>
   ));
   return (
@@ -54,4 +60,7 @@ const Experience = ({ experiences, deleteExperience }) => {
  Experience.propTypes = {
    deleteExperience: PropTypes.func.isRequired
  };
-export default connect(null, { deleteExperience })(Experience);
+//  const mapStateToProps = state => ({
+//    user: state.auth.user
+//  });
+export default connect(null , { deleteExperience })(Experience);

@@ -16,7 +16,11 @@ const Dashboard = ({ user, getCurrentProfile, currentProfile,
  }) => {
   
   // component did update
-  useEffect(() => getCurrentProfile(), [addEducation,
+  useEffect(() =>{
+    getCurrentProfile()
+  }, [
+    getCurrentProfile,
+    addEducation,
     addExperience,
     deleteExperience,
     deleteEducation,
@@ -46,12 +50,18 @@ const Dashboard = ({ user, getCurrentProfile, currentProfile,
             {
               
               currentProfile.education &&
-              <Education educations={currentProfile.education} />
+              <Education 
+              educations={currentProfile.education}
+              canManageEducation={true}
+              />
             }
             <p className="text text-primary">Experiences</p>
             {
               currentProfile.experience &&
-              <Experience experiences={currentProfile.experience} />
+              <Experience 
+                experiences={currentProfile.experience} 
+                canManageExperience={true}
+              />
             }
           </Fragment>
         )}

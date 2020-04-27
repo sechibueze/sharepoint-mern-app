@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <Fragment>
@@ -11,12 +11,14 @@ const Footer = () => {
         color: '#fff',
         backgroundColor: '#333'
       }}> &copy; 2020 | 
-      <Link 
-        to='https://sechibueze.github.io'
+      <a 
+          href={'https://sechibueze.github.io'}
+          rel='noopener noreferrer'
+          target='_blank'
         style={{
           color: '#fff'
         }}
-      > Samuel Chibueze </Link></p>
+      > Samuel Chibueze </a></p>
 
     </Fragment>
   );

@@ -19,8 +19,7 @@ const ProfileCard = ({ profile }) => {
         </div>
         <div className="skills p-1">
           <h3> Skillset </h3>
-          <Skillset skills={ skills } />
-         
+          <Skillset skills={ skills } count={3} />    
         </div>
       </div>
     </Fragment>

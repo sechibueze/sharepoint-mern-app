@@ -39,7 +39,7 @@ const CreateProfile = ({ createProfile, history }) => {
    } = profileData;
   return (
     <Fragment>
-      <h1> Craete profilee</h1>
+     
       <form className="form" onSubmit={handleSubmit}>
         <p className="text text-primary">Create your Profile</p>
         <sup>*</sup>Required
@@ -85,7 +85,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
         <div className="form-group">
           <label htmlFor="website">Website</label>
-          <input type="url" name="website" value={website}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Website" />
+          <input type="text" name="website" value={website}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Website" />
         </div>
 
         <div className="form-group">
@@ -96,13 +96,13 @@ const CreateProfile = ({ createProfile, history }) => {
 
         <div className="form-group">
           <label htmlFor="facebook">Facebook</label>
-          <input type="url" name="facebook" value={facebook}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Facebook Profile URL" />
+          <input type="text" name="facebook" value={facebook}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Facebook Profile URL" />
           <small>Enter the link to your Facebook profile: https://facebook.com/username</small>
         </div>
 
         <div className="form-group">
           <label htmlFor="twitter">Twitter</label>
-          <input type="url" name="twitter" value={twitter}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Twitter profile link" />
+          <input type="text" name="twitter" value={twitter}  onChange={(e) => handleChange(e)} className="form-control" placeholder="Twitter profile link" />
           <small> Something like:  https://twitter.com/<i>username</i></small>
         </div>
 

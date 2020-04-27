@@ -12,9 +12,9 @@ export default function (state = initialState, action) {
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: true,
+        isAuthenticated: payload ? true : null,
         user: payload,
-        loading: true
+        loading: false
       };
 
     case LOGIN_SUCCESS:

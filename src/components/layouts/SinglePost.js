@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 import Alert from '../Alert';
 import { getPostByPostId, likePostByPostId, unlikePostByPostId } from '../../actions/postActions';
 import PostComments from '../PostComments';
@@ -14,7 +15,7 @@ const SinglePost = ({
   useEffect(() => {
     const postId = match.params.postId;
     getPostByPostId(postId);
-  }, [postLiked, commentAdded, postCommentRemoved ]);
+  }, [getPostByPostId, match.params.postId, postLiked, commentAdded, postCommentRemoved ]);
   // like post
   const likeThisPost = (id ) => likePostByPostId(id)
 
@@ -31,10 +32,10 @@ const SinglePost = ({
               <div className="">
                 <img className="post-image" 
                 src={postById.avatar} />
-                alt={`post-id-${postById._id}`}
+                alt={`Post image for ${ postById.name }`}
               </div>
               <div className="post-content">
-                <p className="text text-primary"> {`${postById.name}-rw-title` } </p>
+                <p className="text text-primary"> {`${postById.name}` } </p>
                 <Alert />
                 <div className="post-stats my-1">
                   <span onClick={() => likeThisPost(postById._id)} className="px-1 fa fa-thumbs-up"> {postById.likes.length} </span>
@@ -42,7 +43,10 @@ const SinglePost = ({
                   <span className="mx-1 fa fa-comment-o"> {postById.comments.length } </span>
                  
                   <Link to={`/profiles/${postById.user}`} className="mx-1 fa fa-user-o"> {postById.name}  </Link>
-                  <span className="mx-1 fa fa-calendar-o">{postById.date}</span>
+                  <span className="mx-1 fa fa-calendar-o">
+                    { ' ' }
+                    <Moment format='DD/MM/YYYY'>{postById.date}</Moment>
+                  </span>
                 </div>
 
                 <article className="post-content my-1">
