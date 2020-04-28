@@ -2,5 +2,5 @@ node_modules/
 NOTE.MD
 .env
 
-client
+client/node_modules
 devconnector_2.0/
