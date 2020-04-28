@@ -60,11 +60,7 @@ export const createProfile = (profileData, history, edit = false) => dispatch =>
   // make request body
   const body = JSON.stringify(profileData);
   // set up Headers
-  const configHeaders = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
+  const configHeaders = getAuthHeaders();
 
   axios.post('/api/profiles', body, configHeaders)
     .then(({ data }) => {

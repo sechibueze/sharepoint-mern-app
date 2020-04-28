@@ -1,7 +1,7 @@
 # Sharepoint Community Network
-> [see Sharepoint API live](https://sharepoint-v1-api.herokuapp.com/)
+> [see Sharepoint API live](https://sharepoint-connect.herokuapp.com/)
 
-> [see Sharepoint Live App](https://sharepoint.netlify.app/)
+> [see Sharepoint Live App](https://sharepoint-connect.herokuapp.com/)
 
 > A collaboration platform for professionals (educators & developers) to learn, reflect, connect and share ideas & resources with others.
 

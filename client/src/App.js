@@ -19,6 +19,7 @@ import Posts from './components/layouts/Posts';
 import SinglePost from './components/layouts/SinglePost';
 import Authenticate from './utils/Authenticate';
 import Footer from './components/Footer';
+// import NotFound from './components/layouts/NotFound';
 import store from './store';
 import { loadUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
@@ -51,10 +52,12 @@ const App = () => {
               <Authenticate exact path='/add-experience' component={AddExperience} />
               <Authenticate exact path='/profiles' component={ProfileList} />
               <Authenticate exact path='/profiles/:id' component={ Profile} />
-            
+              
             </div>
           </Switch>
           <Footer />
+          {/* <Route component={NotFound} /> */}
+
         </Fragment>
       </Router>
     </Provider>

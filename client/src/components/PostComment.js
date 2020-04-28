@@ -11,7 +11,7 @@ const PostComment = ({ renderComment, postId, removePostComment, user }) => {
   }
   return (
     <Fragment>
-        { `post id=${postId}`}
+        {/* { `post id=${postId}`} */}
         <div className="comment">
           <img className="comment-avartar" src={ avatar } 
           style={{ width: '90px', height: '90px', borderRadius: '50%', border: '1px solid'}}

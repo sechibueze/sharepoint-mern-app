@@ -31,8 +31,9 @@ const SinglePost = ({
             <div className="post py-2">
               <div className="">
                 <img className="post-image" 
-                src={postById.avatar} />
-                alt={`Post image for ${ postById.name }`}
+                src={postById.avatar} 
+                alt={`Post of ${postById.name}`}
+                />
               </div>
               <div className="post-content">
                 <p className="text text-primary"> {`${postById.name}` } </p>
