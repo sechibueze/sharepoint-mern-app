@@ -1,5 +1,6 @@
 const express = require('express');
 const { config } = require('dotenv');
+const path = require('path');
 const app = express();
 const dbConfig = require('./config/dbConfig');
 dbConfig();
@@ -16,8 +17,12 @@ app.use('/api', authRoute);
 app.use('/api/profiles', profilesRoute);
 app.use('/api/posts', postsRoute);
 
-app.use('/', (req, res) => {
-  return res.status(200).json({ message: 'Welcome to Educatus MERN app'});
-});
+if(process.env.NODE_ENV === 'production'){
+  // set static folder 
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(port, () => console.log(`Educatus::server running on ${port}`));
