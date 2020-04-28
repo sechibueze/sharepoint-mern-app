@@ -16,9 +16,11 @@ app.use('/api', authRoute);
 app.use('/api/profiles', profilesRoute);
 app.use('/api/posts', postsRoute);
 
-app.use('/', (req, res) => {
-  return res.status(200).json({ message: 'Welcome to Educatus MERN app'});
-});
+// app.use('/', (req, res) => {
+//   return res.status(200).json({ message: 'Welcome to Educatus MERN app'});
+// });
+console.log('Node env', process.env.NODE_ENV)
+console.log('is true', process.env.NODE_ENV === 'production')
 if (process.env.NODE_ENV === 'production') {
 
     // set static folder 
