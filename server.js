@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const { config } = require('dotenv');
 const app = express();
 const dbConfig = require('./config/dbConfig');
